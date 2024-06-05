@@ -21,4 +21,8 @@ class Entidade extends Model
     {
         return $this->belongsToMany(Local::class);
     }
+    public function noticias()
+    {
+        return $this->hasMany(Noticia::class);
+    }
 }

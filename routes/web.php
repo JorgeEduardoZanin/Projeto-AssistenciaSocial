@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntidadeController;
 
 
-Route::view('/', 'welcome');
+Route::view('/', 'home');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -14,6 +14,13 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::post('/entidades', [EntidadeController::class, 'store'])->name('entidade.store');
 
 require __DIR__.'/auth.php';
+
+Route::view('/home', 'home');
+Route::view('/entidades', 'entidades');
+Route::view('/noticias', 'noticias' );
+Route::view('/primeira', 'primeira' );
+Route::view('/segunda', 'segunda');
+Route::view('/terceira', 'terceira');
+Route::view('/quarta', 'quarta');
