@@ -15,6 +15,6 @@ class Local extends Model
 
     public function entidades()
     {
-        return $this->belongsToMany(Entidade::class);
+        return $this->hasMany(Entidade::class);
     }
 }

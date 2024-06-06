@@ -16,7 +16,7 @@ class Noticia extends Model
     ];
 
 
-    public function entidade()
+    public function entidades()
     {
         return $this->belongsTo(Entidade::class);
     }

@@ -15,11 +15,13 @@ class Entidade extends Model
         'phone',
         'description',
         'hour',
+        'image',
+        'local_id'
     ];
 
     public function locais()
     {
-        return $this->belongsToMany(Local::class);
+        return $this->belongsTo(Local::class);
     }
     public function noticias()
     {

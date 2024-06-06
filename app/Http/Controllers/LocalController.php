@@ -11,8 +11,9 @@ class LocalController extends Controller
     public function index()
     {
         $locais = Local::all();
-        return view('locais.index', compact('locais'));
+        return view('locais', compact('locais'));
     }
+
 
     public function store(Request $request)
     {

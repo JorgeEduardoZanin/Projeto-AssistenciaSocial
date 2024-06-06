@@ -18,7 +18,7 @@ $logout = function (Logout $logout) {
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        <img src="https://seeklogo.com/images/G/guarapuava-parana-logo-EC6836A3FD-seeklogo.com.png" alt="Logo da aplicação" class="w-12 h-12" />
                     </a>
                 </div>
 
@@ -98,6 +98,27 @@ $logout = function (Logout $logout) {
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </button>
+            </div>
+        </div>
+    </div>
+    <div class="py-0">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-amber-100 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <a href="/entidade" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-3">
+                        Criar Entidades
+                    </a>
+                    <a href="/entidadeDash" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-28">
+                        Visualizar Entidades
+                    </a>
+                    <a href="/noticia" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-3">
+                        Criar Notícias
+                    </a>
+                    <a href="/noticiaDash" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                        Visualizar Notícias
+                    </a>
+
+                </div>
             </div>
         </div>
     </div>

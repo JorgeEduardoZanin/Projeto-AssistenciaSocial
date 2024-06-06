@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('phone');
             $table->text('description');
             $table->string('hour');
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('local_id');
             $table->foreign('local_id')->references('id')->on('locals')->onDelete('cascade');
             $table->timestamps();
