@@ -10,7 +10,7 @@ class EntidadeController extends Controller
 {
     public function index()
     {
-        $entidades = Entidade::all();
+        $entidades = Entidade::with('locals')->get();
         return view('entidadeDash', compact('entidades'));
     }
 
@@ -26,26 +26,23 @@ class EntidadeController extends Controller
             'local_id' => 'required|exists:locals,id'
         ]);
 
-        // Verifica se foi enviada uma imagem
-        if ($request->hasFile('image')) {
-            // Obtém a imagem do request
-            $imagem = $request->file('image');
-            // Define um nome único para a imagem
-            $nomeImagem = time().'.'.$imagem->getClientOriginalExtension();
-            // Define o caminho onde a imagem será armazenada
-            $caminhoImagem = $imagem->storeAs('public/images/entidades/', $nomeImagem);
-            // Adiciona o caminho da imagem aos dados validados
-            $validatedData['image'] = $caminhoImagem;
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestImage->move(public_path('images'), $imageName);
+
+            $validatedData['image'] = $imageName;
         }
 
-        // Cria a entidade com os dados validados
         $entidade = Entidade::create($validatedData);
 
-        // Verifica se foi enviado um local
         if ($request->has('local_id')) {
-            // Associa a entidade ao local
-            $entidade->local()->associate($request->local);
-            // Salva a associação
+            $entidade->locals()->associate($request->local_id);
             $entidade->save();
         }
 
@@ -57,9 +54,12 @@ class EntidadeController extends Controller
     public function show($local)
     {
         $local = Local::findOrFail($local);
-        $entidades = $local->entidades;
+
+        $entidades = $local->entidades()->paginate(4); // Paginação com 10 entidades por página
+
         return view('entidades', compact('entidades'));
     }
+
 
     public function create()
     {
@@ -71,21 +71,43 @@ class EntidadeController extends Controller
     public function update(Request $request, Entidade $entidade)
     {
         $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
-            'description' => 'required|string',
+            'description' => 'required|string|max:500',
             'hour' => 'required|string|max:100',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'local_id' => 'required|exists:locals,id'
         ]);
+
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestImage->move(public_path('images'), $imageName);
+
+            $validatedData['image'] = $imageName;
+        }
 
         $entidade->update($validatedData);
 
-        if ($request->has('locais')) {
-            $entidade->locais()->sync($request->locais);
+        if ($request->has('local_id')) {
+            $entidade->locals()->associate($request->local_id);
+            $entidade->save();
         }
 
-        return redirect()->route('entidade.index')->with('success', 'Entidade atualizada com sucesso.');
+        return redirect()->route('dashboard')->with('success', 'Entidade atualizada com sucesso.');
     }
+    public function edit(Entidade $entidade)
+    {
+        $locais = Local::all();
+        return view('entidadeEdit', compact('entidade', 'locais'));
+    }
+
 
     public function destroy(Entidade $entidade)
     {

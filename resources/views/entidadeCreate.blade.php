@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div>
-                <label for="dropzone-file"
+                <label for="image"
                        class="mx-auto cursor-pointer flex w-full max-w-lg flex-col items-center rounded-xl border-2 border-dashed border-blue-400 bg-white p-6 text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-500" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor" stroke-width="2">
@@ -47,7 +47,7 @@
 
                     <p class="mt-2 text-gray-500 tracking-wide">Upload or darg & drop your file SVG, PNG, JPG or GIF. </p>
 
-                    <input id="dropzone-file" type="file" name="image" class="hidden"/>
+                    <input id="image" type="file" name="image" class="hidden"/>
             </div>
             <div>
                 <label for="local_id" class="block mb-2 text-sm font-medium text-gray-700">Local</label>
@@ -60,10 +60,8 @@
             </div>
             <button type="submit"
                     class="text-white bg-blue-700  mt-8 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Submit
+                Enviar
             </button>
-        </form>
-
         </form>
     </div>
 </x-app-layout>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Local extends Model
 {
@@ -13,7 +14,7 @@ class Local extends Model
         'name',
     ];
 
-    public function entidades()
+    public function entidades(): HasMany
     {
         return $this->hasMany(Entidade::class);
     }

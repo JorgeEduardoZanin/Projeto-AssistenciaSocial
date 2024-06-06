@@ -27,17 +27,19 @@ Route::get('/noticias/{entidade}', [NoticiaController::class, 'show'])->name('no
 
 
 //Rotas Privadas
-Route::get('/entidadeDash', [EntidadeController::class, 'index'])->name('entidadeDash');
-Route::get('/entidade', [EntidadeController::class, 'create'])->name('entidadeCreate');
-Route::post('/entidades', [EntidadeController::class, 'store'])->name('entidade.store');
-Route::get('/entidades/{entidade}', [EntidadeController::class, 'show'])->name('entidades.show');
-Route::put('/entidades/{entidade}', [EntidadeController::class, 'update'])->name('entidades.update');
-Route::delete('/entidades/{entidade}', [EntidadeController::class, 'destroy'])->name('entidades.destroy');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/entidadeDash', [EntidadeController::class, 'index'])->name('entidadeDash');
+    Route::get('/entidade', [EntidadeController::class, 'create'])->name('entidadeCreate');
+    Route::post('/entidades', [EntidadeController::class, 'store'])->name('entidade.store');
+    Route::get('/entidades/{entidade}', [EntidadeController::class, 'show'])->name('entidades.show');
+    Route::get('/entidades/{entidade}/edit', [EntidadeController::class, 'edit'])->name('entidadesEdit');
+    Route::put('/entidades/{entidade}', [EntidadeController::class, 'update'])->name('entidades.update');
+    Route::delete('/entidades/{entidade}', [EntidadeController::class, 'destroy'])->name('entidades.destroy');
 
-
-Route::get('/noticiaDash', [NoticiaController::class, 'index'])->name('noticiaDash');
-Route::post('/noticias', [NoticiaController::class, 'store'])->name('noticias.store');
-Route::get('/noticia', [NoticiaController::class, 'create'])->name('noticiaCreate');
-Route::put('/noticias/{id}', [NoticiaController::class, 'update'])->name('noticias.update');
-Route::delete('/noticias/{noticia}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
-
+    Route::get('/noticiaDash', [NoticiaController::class, 'index'])->name('noticiaDash');
+    Route::post('/noticias', [NoticiaController::class, 'store'])->name('noticia.store');
+    Route::get('/noticia', [NoticiaController::class, 'create'])->name('noticiaCreate');
+    Route::get('/noticias/{noticia}/edit', [NoticiaController::class, 'edit'])->name('noticiasEdit');
+    Route::put('/noticias/{noticia}', [NoticiaController::class, 'update'])->name('noticia.update');
+    Route::delete('/noticias/{noticia}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
+});

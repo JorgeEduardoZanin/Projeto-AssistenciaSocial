@@ -53,12 +53,16 @@
                         {{ $entidade->hour }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $entidade->local_id }}
+                        @if($entidade->locals)
+                            {{ $entidade->locals->name }}
+                        @else
+                            Local não especificado
+                        @endif
                     </td>
                     <td class="px-6 py-4 flex gap-2 justify-center items-center">
                     <td class="px-6 py-4 flex gap-2 justify-center items-center">
                         <!-- Botão para editar -->
-                        <a href=""
+                        <a href="{{ route('entidadesEdit', $entidade->id) }}"
                            class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-600">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">

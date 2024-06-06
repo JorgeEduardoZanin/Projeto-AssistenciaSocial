@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Local;
 use Illuminate\Http\Request;
 use App\Models\Noticia;
 use App\Models\Entidade;
@@ -16,41 +17,41 @@ class NoticiaController extends Controller
 
     public function store(Request $request)
     {
-        // Validar os dados do formulário
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:500',
-            'photos' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'entidades' => 'required|array', // Validação para garantir que entidades é um array
-            'entidades.*' => 'exists:entidades,id', // Validação para garantir que cada entidade exista no banco de dados
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'entidade_id' => 'required|exists:entidades,id'
         ]);
 
-        // Verifica se foi enviada uma imagem
-        if ($request->hasFile('photos')) {
-            // Obtém a imagem do request
-            $photos = $request->file('photos');
-            // Define um nome único para a imagem
-            $nomeImagem = time().'.'.$photos->getClientOriginalExtension();
-            // Define o caminho onde a imagem será armazenada
-            $caminhoImagem = $photos->storeAs('public/images/noticias/', $nomeImagem);
-            // Adiciona o caminho da imagem aos dados validados
-            $validatedData['image'] = $caminhoImagem;
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestImage->move(public_path('images'), $imageName);
+
+            $validatedData['image'] = $imageName;
         }
 
-        // Cria a notícia com os dados validados
         $noticia = Noticia::create($validatedData);
 
-        // Associar as entidades selecionadas à notícia
-        $noticia->entidades()->sync($request->entidades);
+        if ($request->has('entidade_id')) {
+            $noticia->entidades()->associate($request->entidade_id);
+            $noticia->save();
+        }
 
-        // Retorna uma resposta de sucesso
-        return redirect()->route('dashboard')->with('success', 'Notícia criada com sucesso.');
+        return redirect()->route('dashboard')->with('success', 'Noticia criada com sucesso.');
     }
+
 
     public function show($entidade)
     {
         $entidade = Entidade::findOrFail($entidade);
-        $noticias = $entidade->noticias;
+        $noticias = $entidade->noticias()->paginate(4);
         return view('noticias', compact('noticias'));
     }
 
@@ -61,22 +62,42 @@ class NoticiaController extends Controller
         return view('noticiaCreate', compact('entidades'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Noticia $noticia)
     {
-        $request->validate([
-            'title' => 'required|string',
-            'description' => 'required|string',
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:500',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'entidade_id' => 'required|exists:entidades,id'
         ]);
 
-        $noticia = Noticia::findOrFail($id);
-        $noticia->update($request->all());
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
 
+            $requestImage = $request->image;
 
-        if ($request->has('entidades')) {
-            $noticia->entidades()->sync($request->entidades);
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestImage->move(public_path('images'), $imageName);
+
+            $validatedData['image'] = $imageName;
         }
 
-        return response()->json($noticia, 200);
+        $noticia->update($validatedData);
+
+        if ($request->has('entidade_id')) {
+            $noticia->entidades()->associate($request->entidade_id);
+            $noticia->save();
+        }
+
+        return redirect()->route('dashboard')->with('success', 'Noticia atualizada com sucesso.');
+    }
+
+    public function edit(Noticia $noticia)
+    {
+        $entidades = Entidade::all();
+        return view('noticiaEdit', compact('noticia', 'entidades'));
     }
 
     public function destroy(Noticia $noticia)

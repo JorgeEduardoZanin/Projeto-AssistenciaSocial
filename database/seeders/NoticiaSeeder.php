@@ -13,32 +13,32 @@ class NoticiaSeeder extends Seeder
     public function run(): void
     {
         Noticia::create([
-            'entidade_id' => '2',
+            'entidade_id' => '20',
             'title' => 'Nome da noticia',
             'description' => 'Descrição da Entidade'
         ]);
         Noticia::create([
-            'entidade_id' => '3',
+            'entidade_id' => '20',
             'title' => 'Nome da noticia',
             'description' => 'Descrição da Entidade'
         ]);
         Noticia::create([
-            'entidade_id' => '4',
+            'entidade_id' => '20',
             'title' => 'Nome da noticia',
             'description' => 'Descrição da Entidade'
         ]);
         Noticia::create([
-            'entidade_id' => '5',
+            'entidade_id' => '20',
             'title' => 'Nome da noticia',
             'description' => 'Descrição da Entidade'
         ]);
         Noticia::create([
-            'entidade_id' => '6',
+            'entidade_id' => '20',
             'title' => 'Nome da noticia',
             'description' => 'Descrição da Entidade'
         ]);
         Noticia::create([
-            'entidade_id' => '7',
+            'entidade_id' => '20',
             'title' => 'Nome da noticia',
             'description' => 'Descrição da Entidade'
         ]);

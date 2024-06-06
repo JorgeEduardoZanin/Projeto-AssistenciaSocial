@@ -29,13 +29,17 @@
                     {{ $noticia->description }}
                 </td>
                 <td class="px-6 py-4 text-base">
-                    {{ $noticia->entidade_id }}
+                    @if($noticia->entidades)
+                        {{ $noticia->entidades->name }}
+                    @else
+                        Local não especificado
+                    @endif
                 </td>
                 <td class="px-6 py-4 flex gap-2 justify-center items-center">
                 <td class="px-6 py-4 flex gap-2 justify-center items-center">
                 <td class="px-6 py-4 flex gap-2 justify-center items-center">
                     <!-- Botão para editar -->
-                    <a href="" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-600">
+                    <a href="{{ route('noticiasEdit', $noticia->id) }}" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-600">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path

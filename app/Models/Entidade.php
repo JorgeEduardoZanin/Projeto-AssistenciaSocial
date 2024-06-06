@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Entidade extends Model
 {
@@ -19,12 +21,13 @@ class Entidade extends Model
         'local_id'
     ];
 
-    public function locais()
+    public function locals(): BelongsTo
     {
-        return $this->belongsTo(Local::class);
+        return $this->belongsTo(Local::class, 'local_id');
     }
-    public function noticias()
+    public function noticias(): HasMany
     {
-        return $this->hasMany(Noticia::class);
+        return $this->HasMany(Noticia::class);
     }
 }
+

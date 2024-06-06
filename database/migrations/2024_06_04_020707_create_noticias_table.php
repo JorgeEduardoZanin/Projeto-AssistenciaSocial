@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->json('photos')->nullable();
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('entidade_id');
             $table->foreign('entidade_id')->references('id')->on('entidades')->onDelete('cascade');
             $table->timestamps();
