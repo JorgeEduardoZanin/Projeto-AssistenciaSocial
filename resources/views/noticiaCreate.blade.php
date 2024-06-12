@@ -32,7 +32,7 @@
                     <input id="image" type="file" name="image" class="hidden"/>
             </div>
             <div>
-                <label for="entidade_id" class="block mb-2 text-sm font-medium text-white mt-7">Entidade</label>
+                <label for="entidade_id" class="block mb-2 text-sm font-medium text-gray-700 mt-7">Entidade</label>
                 <select id="entidade_id" name="entidade_id" class="block w-full p-2 border border-gray-300 rounded-lg">
                     <option value="">Selecione a entidade</option>
                     @foreach($entidades as $entidade)
