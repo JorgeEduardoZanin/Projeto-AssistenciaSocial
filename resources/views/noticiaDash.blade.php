@@ -10,12 +10,16 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Nome da Noticia
+                    Nome da Notícia
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Descricao
-                </th><th scope="col" class="px-6 py-3">
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Entidade
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Ação
                 </th>
             </tr>
             </thead>
@@ -47,7 +51,6 @@
                                 fill="#00B087"/>
                         </svg>
                     </a>
-
                     <!-- Formulário para excluir -->
                     <form action="{{ route('noticias.destroy', $noticia->id) }}" method="post">
                         @csrf
@@ -66,6 +69,6 @@
             </tbody>
         </table>
     </div>
-    {{--        {{ $entidades->links() }}--}}
+{{--            {{ $noticias->links() }}--}}
 </div>
 </x-app-layout>

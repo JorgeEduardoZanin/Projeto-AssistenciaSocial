@@ -104,20 +104,19 @@ $logout = function (Logout $logout) {
     <div class="py-0">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-amber-100 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <a href="/entidade" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-3">
+                <div class="p-6 bg-white border-b border-gray-200 flex justify-between items-center flex-wrap">
+                    <a href="/entidade" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2 lg:mb-0 lg:mr-3">
                         Criar Entidades
                     </a>
-                    <a href="/entidadeDash" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-28">
+                    <a href="/entidadeDash" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-2 lg:mb-0 lg:mr-3">
                         Visualizar Entidades
                     </a>
-                    <a href="/noticia" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-3">
+                    <a href="/noticia" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2 lg:mb-0 lg:mr-3">
                         Criar Notícias
                     </a>
-                    <a href="/noticiaDash" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    <a href="/noticiaDash" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-2 lg:mb-0">
                         Visualizar Notícias
                     </a>
-
                 </div>
             </div>
         </div>
