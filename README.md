@@ -1,120 +1,116 @@
-# Sistema de Gestão de Entidades de Assistência Social
+# Social Assistance Management System
 
-## Justificativa
+## Justification
 
-O projeto visa aprimorar a gestão das entidades de assistência social da Secretaria de Assistência e Desenvolvimento Social de Guarapuava. Utilizando o framework PHP Laravel e tecnologias modernas como Docker, Blade e Tailwind, o sistema proporciona robustez, escalabilidade e uma interface moderna.
+The project aims to enhance the management of social assistance entities of the Secretary of Assistance and Social Development of Guarapuava. Using the PHP Laravel framework and modern technologies such as Docker, Blade, and Tailwind, the system provides robustness, scalability, and a modern interface.
 
-## Desenvolvedores
+## Developers
 
 - Guilherme Bittencourt da Silva
 
+## Technologies Used
 
-## Tecnologias Utilizadas
+- **Laravel:** PHP framework for web application development.
+- **Docker:** Platform for creating, deploying, and running applications in containers.
+- **Blade:** Laravel's template engine for rendering views.
+- **Tailwind CSS:** CSS framework for responsive and modern design.
 
-- **Laravel:** Framework PHP para desenvolvimento de aplicações web.
-- **Docker:** Plataforma para criar, implantar e executar aplicativos em contêineres.
-- **Blade:** Motor de templates do Laravel para renderização de views.
-- **Tailwind CSS:** Framework CSS para design responsivo e moderno.
+## Installation and Setup
 
-## Instalação e Configuração
+### Requirements
 
-### Requisitos
+- Docker (includes Docker Compose)
+- PHP (if not using Docker)
+- Composer (if not using Docker)
 
-- Docker (inclui Docker Compose)
-- PHP (se não estiver usando o Docker)
-- Composer (se não estiver usando o Docker)
+### Steps to Start the Project
 
-### Passos para Iniciar o Projeto
-
-1. **Clone o Repositório**
+1. **Clone the Repository**
 
     ```bash
     git clone https://github.com/guibitt7/Projeto-Assistencia-Social.git
-    cd repositorio
+    cd repository
     ```
 
-2. **Configuração do Docker**
+2. **Docker Setup**
 
-    Certifique-se de que o Docker e o Docker Compose estão instalados e em execução.
+    Ensure that Docker and Docker Compose are installed and running.
 
-3. **Suba os Contêineres**
+3. **Start the Containers**
 
     ```bash
     docker-compose up -d
     ```
 
-4. **Instale as Dependências**
+4. **Install Dependencies**
 
-    Acesse o contêiner do Laravel e instale as dependências:
+    Access the Laravel container and install the dependencies:
 
     ```bash
     docker-compose exec app composer install
     ```
 
-5. **Configure o Ambiente**
+5. **Configure the Environment**
 
-    Copie o arquivo `.env.example` para criar o arquivo `.env`:
+    Copy the `.env.example` file to create the `.env` file:
 
     ```bash
     docker-compose exec app cp .env.example .env
     ```
 
-6. **Execute as Migrações**
+6. **Run Migrations**
 
     ```bash
     docker-compose exec app php artisan migrate
     ```
 
-## Host do Site
+## Site Hosting
 
-O site foi inicialmente hospedado na nuvem, mas foi retirado devido às eleições em Guarapuava. A Secretaria de Assistência e Desenvolvimento Social solicitou a remoção temporária do site até o término das eleições. O site será reativado após o fim do período eleitoral.
+The site was initially hosted in the cloud but was removed due to the elections in Guarapuava. The Secretary of Assistance and Social Development requested the temporary removal of the site until the elections are over. The site will be reactivated after the end of the electoral period.
 
-## Funcionalidades do Sistema
+## System Features
 
-### Página Inicial
+### Homepage
 
-- **Interface de Seleção de Bairro:** A página inicial oferece uma interface intuitiva e fácil de usar, permitindo aos usuários selecionar o bairro desejado de forma rápida. A navegação é otimizada para garantir uma experiência agradável e eficiente.
+- **Neighborhood Selection Interface:** The homepage offers an intuitive and easy-to-use interface, allowing users to quickly select the desired neighborhood. Navigation is optimized to ensure a pleasant and efficient experience.
 
-### Detalhes das Entidades
+### Entity Details
 
-- **Informações Detalhadas:** Fornece uma visão abrangente sobre cada entidade de assistência social, incluindo descrição completa, endereço, contato e serviços oferecidos.
-- **Eventos Relacionados:** Exibe todos os eventos programados para a entidade, com informações detalhadas como data, hora e descrição, mantendo os usuários bem informados sobre as atividades.
+- **Detailed Information:** Provides a comprehensive view of each social assistance entity, including a complete description, address, contact information, and services offered.
+- **Related Events:** Displays all scheduled events for the entity, with detailed information such as date, time, and description, keeping users well-informed about the activities.
 
-### Eventos
+### Events
 
-- **Visualização de Eventos:** Permite a visualização de todos os eventos cadastrados no sistema de maneira organizada.
-- **Detalhes dos Eventos:** Cada evento possui uma página dedicada com informações detalhadas, como localização, horário e descrição, permitindo aos usuários uma visão completa dos eventos.
+- **Event Viewing:** Allows viewing all registered events in an organized manner.
+- **Event Details:** Each event has a dedicated page with detailed information such as location, time, and description, allowing users a complete view of the events.
 
-### Área Administrativa
+### Administrative Area
 
-- **Acesso Restrito:** Área acessível exclusivamente para administradores, garantindo que apenas usuários autorizados possam fazer alterações e gerenciar o conteúdo.
-- **Gestão de Entidades:** Funcionalidade para adicionar, editar e excluir informações sobre entidades de assistência social, assegurando que o banco de dados esteja sempre atualizado.
-- **Gestão de Usuários:** Permite a administração dos perfis de usuários, atribuição de permissões e gerenciamento de acessos, mantendo a segurança e a organização.
+- **Restricted Access:** Area accessible exclusively to administrators, ensuring that only authorized users can make changes and manage content.
+- **Entity Management:** Functionality to add, edit, and delete information about social assistance entities, ensuring that the database is always up-to-date.
+- **User Management:** Allows administration of user profiles, assigning permissions, and managing access, maintaining security and organization.
 
-### Gerenciamento de Eventos
+### Event Management
 
-- **Criação de Eventos:** Ferramentas robustas para criar novos eventos, definindo detalhes como data, horário, local e descrição de forma eficiente.
-- **Edição de Eventos:** Permite atualizar informações de eventos existentes, garantindo que todos os detalhes estejam corretos e atualizados.
-- **Exclusão de Eventos:** Oferece a possibilidade de remover eventos desnecessários ou cancelados, mantendo o sistema limpo e relevante.
+- **Event Creation:** Robust tools for creating new events, defining details such as date, time, location, and description efficiently.
+- **Event Editing:** Allows updating existing event information, ensuring that all details are correct and up-to-date.
+- **Event Deletion:** Provides the ability to remove unnecessary or canceled events, keeping the system clean and relevant.
 
-Essas funcionalidades são projetadas para proporcionar uma gestão eficaz e simplificada das entidades de assistência social e seus eventos, promovendo uma organização eficiente e uma comunicação clara com os usuários e administradores.
+These features are designed to provide effective and simplified management of social assistance entities and their events, promoting efficient organization and clear communication with users and administrators.
 
+## General Objective
 
-## Objetivo Geral
+Develop an integrated management system for the Secretary of Assistance and Social Development, facilitating the organization, dissemination, and management of social assistance entities and their events.
 
-Desenvolver um sistema de gestão integrado para a Secretaria de Assistência e Desenvolvimento Social, facilitando a organização, divulgação e gerenciamento das entidades de assistência social e seus eventos.
+## Results and Social Impact
 
-## Resultados e Impacto Social
+- **Directly Beneficiaries:** Approximately 2,000 people.
+- **Indirect Impact:** About 3,000 people.
 
-- **Diretamente Beneficiadas:** Aproximadamente 2.000 pessoas.
-- **Impacto Indireto:** Cerca de 3.000 pessoas.
-
-## Instituições Externas Impactadas
+## Impacted External Institutions
 
 - Associação de Pais e Amigos dos Excepcionais (APAE)
 - Centro de Referência da Assistência Social (CRAS)
 - Associação dos Deficientes Físicos de Guarapuava (ADFG)
 - Centro de Integração Empresa - Escola (CIEE)
 - Instituto Assistencial Dom Bosco
-
-
